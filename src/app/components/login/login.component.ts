@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor() { }
+  @ViewChild('form') form;
+
+  user = {
+    email: '',
+    password: ''
+  }
 
   ngOnInit(): void {
   }
 
+  onLoginSubmit() {
+    const user = this.user
+
+    console.log(user);
+    this.form.reset();
+  }
 }
