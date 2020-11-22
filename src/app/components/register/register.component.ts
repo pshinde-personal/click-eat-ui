@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,20 +10,31 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _auth: AuthService,
+    private _flash: FlashMessagesService,
+    private _router: Router) { }
+  
   @ViewChild('form') form;
+
   user = {
     name: '',
     email: '',
     password: '',
     role: 'user'
   }
+  
   ngOnInit(): void {
   }
 
   onRegisterSubmit() {
     const user = this.user;
     console.log(user);
-    this.form.reset();
+    this._auth.registerUser(user).subscribe(data => {
+      this._flash.show('registered user', { cssClass: 'alert-success', timeout: 5000});
+      this.form.reset();
+      this._router.navigate(['/login']);
+    }, err => {
+      this._flash.show(err.error.error, { cssClass: 'alert-danger', timeout: 5000});
+    })
   }
 }

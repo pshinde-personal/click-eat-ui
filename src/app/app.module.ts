@@ -7,6 +7,8 @@ import { AppRoutingComponents, AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages'
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlashMessagesModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
