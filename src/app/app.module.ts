@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages'
 import { AuthService } from './services/auth.service';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AuthService } from './services/auth.service';
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtHelperService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

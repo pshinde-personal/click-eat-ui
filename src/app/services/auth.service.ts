@@ -1,3 +1,4 @@
+import { JwtHelperService} from '@auth0/angular-jwt'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -10,8 +11,10 @@ export class AuthService {
   user: any;
 
   backendUrl: string = 'https://thawing-caverns-75517.herokuapp.com/api/v1';
+  // backendUrl: string = 'http://localhost:5000/api/v1';
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient,
+    private jwtHelper: JwtHelperService) { }
   
   registerUser(user) {
     let headers = new HttpHeaders();
@@ -22,26 +25,43 @@ export class AuthService {
   loginUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this._http.post(`${this.backendUrl}/auth/login`, user, {headers: headers});
+    const demo = {
+      email: 'pratik@gmail.com',
+      password: '123456'
+    }
+    return this._http.post(`${this.backendUrl}/auth/login`, demo, {headers: headers});
   }
 
   authenticateUser() {
     let headers = new HttpHeaders();
+    this.loadToken();
     headers = headers.set('Authorization', `Bearer ${this.authToken}`);
     return this._http.get(`${this.backendUrl}/auth/getMe`, {headers: headers})
-    .subscribe(
-      data => {
-        console.log(data);
-    }, err => {
-      console.log(err);
-      
-    })
+    
+  }
+
+  isLoggedIn() {
+    return !this.jwtHelper.isTokenExpired(this.authToken);
+  }
+
+  loadToken() {
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+  }
+
+  loadUser() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.user = user;
   }
 
   saveToken(token: string) {
     this.authToken = token;
     localStorage.setItem('id_token', token);
-    this.authenticateUser();
+  }
+
+  saveUser(user: any) {
+    this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   logOutUser() {

@@ -1,4 +1,7 @@
-<p>profile works!</p>
-<div>
-  {{user | json}}
+<div *ngIf='user'>
+  <div class="jumbotron">
+    <h4 class="display-3">Hello, {{user.name}}!</h4>
+    <h5><small>You are logged in throuth</small> {{user.email}}
+    </h5>
+  </div>
 </div>

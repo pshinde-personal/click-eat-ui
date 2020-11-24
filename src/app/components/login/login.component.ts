@@ -25,10 +25,11 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit() {
     const user = this.user
+    this._flash.show('loading..', { cssClass: 'alert-success', timeout: 2000});
     this._auth.loginUser(user).subscribe((data: {success: boolean, token: string}) => {
       this.form.reset();
       const token = data.token
-      this._flash.show('loading..', { cssClass: 'alert-success', timeout: 2000});
+      this._flash.show('logged in', { cssClass: 'alert-success', timeout: 2000});
       this._auth.saveToken(token);
       this._router.navigate(['/profile']);
     }, err => {
