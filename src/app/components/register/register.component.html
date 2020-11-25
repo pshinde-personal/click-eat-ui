@@ -16,5 +16,10 @@
     <input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" class="form-control"
       id="exampleInputPassword1" placeholder="Password">
   </div>
+  <div class="custom-control custom-switch pb-2">
+    <input type="checkbox" class="custom-control-input" (click)="toggleUser()" id="customSwitch1">
+    <label class="custom-control-label" for="customSwitch1">Do you have restaurant? & want to inrole into Online Delivary
+      Service</label>
+  </div>
   <button type="submit" class="btn btn-primary">Register</button>
 </form>

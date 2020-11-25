@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  isCollapsed: boolean = true;
   getAuthProperty() {
     return this._auth;
   }

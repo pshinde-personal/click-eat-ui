@@ -25,11 +25,11 @@ export class AuthService {
   loginUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    const demo = {
-      email: 'pratik@gmail.com',
-      password: '123456'
-    }
-    return this._http.post(`${this.backendUrl}/auth/login`, demo, {headers: headers});
+    // const demo = {
+    //   email: 'pratik@gmail.com',
+    //   password: '123456'
+    // }
+    return this._http.post(`${this.backendUrl}/auth/login`, user, {headers: headers});
   }
 
   authenticateUser() {
