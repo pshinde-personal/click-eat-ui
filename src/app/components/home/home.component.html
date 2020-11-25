@@ -1,1 +1,18 @@
-<h2>WELCOME TO Click-Eat!</h2>
+<div *ngFor="let restaurant of restaurants" class="card">
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200"
+    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+    <rect width="100%" height="100%" fill="#868e96"></rect>
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+  </svg>
+  <div class="card-body">
+    <h4 class="card-title">{{restaurant.name}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{restaurant.email}}</h6>
+    <p class="card-text">{{restaurant.details}}</p>
+    <span *ngFor="let service of restaurant.services" class="badge badge-pill badge-dark mr-1 mb-2">{{service}}</span>
+    <div class="d-block">
+      <a href="#" class="badge badge-pill badge-success card-link">Visit</a>
+      <a href="#" class="badge badge-pill badge-info card-link">View More</a>
+    </div>
+
+  </div>
