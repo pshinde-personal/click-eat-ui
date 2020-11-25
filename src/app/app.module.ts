@@ -9,23 +9,32 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages'
 import { AuthService } from './services/auth.service';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    AppRoutingComponents
+    AppRoutingComponents,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('id_token');
+        },
+        allowedDomains: ['localhost:4200', 'https://thawing-caverns-75517.herokuapp.com/*'],
+      }
+    }),
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [AuthService, JwtHelperService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS}],
+  providers: [AuthService, JwtHelperService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

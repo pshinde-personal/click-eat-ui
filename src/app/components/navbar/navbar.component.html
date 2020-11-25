@@ -11,21 +11,22 @@
         <a class="nav-link" [routerLink]="['/']">Home
         </a>
       </li>
-      <li class="nav-item " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+      <li *ngIf="getAuthProperty().isLoggedIn()" class="nav-item " [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/profile']">profile
         </a>
       </li>
     </ul>
     <ul class="navbar-nav navbar-right">
-      <li class="nav-item " [routerLinkActive]="['active']">
+      <li *ngIf="!getAuthProperty().isLoggedIn()" class="nav-item " [routerLinkActive]="['active']">
         <a class="nav-link" [routerLink]="['/login']">Login
         </a>
       </li>
-      <li class="nav-item " [routerLinkActive]="['active']">
+      <li *ngIf="!getAuthProperty().isLoggedIn()" class="nav-item " [routerLinkActive]="['active']">
         <a class="nav-link" [routerLink]="['/register']">register
         </a>
       </li>
-      <li class="nav-item ">
+      <li *ngIf="getAuthProperty().isLoggedIn()" class="nav-item ">
         <a class="nav-link" href="#" (click)='onLogout()'>logout
         </a>
       </li>
