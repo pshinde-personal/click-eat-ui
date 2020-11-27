@@ -5,6 +5,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
+import { RestaurantComponent } from './components/restaurant-list/restaurant/restaurant.component';
+import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -18,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard]
+  },
+  {
+    path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard]
   }
 ];
 
@@ -27,5 +34,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const AppRoutingComponents = [
-  LoginComponent, ProfileComponent, HomeComponent, RegisterComponent
+  LoginComponent, ProfileComponent, HomeComponent, RegisterComponent, 
+  RestaurantComponent, RestaurantListComponent, DashboardComponent, AddRestaurantComponent
 ]

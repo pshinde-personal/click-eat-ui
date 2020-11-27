@@ -12,11 +12,13 @@ import { FlashMessagesModule } from 'angular2-flash-messages'
 import { AuthService } from './services/auth.service';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth.guard';
+import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    AddRestaurantComponent,
     AppRoutingComponents,
   ],
   imports: [

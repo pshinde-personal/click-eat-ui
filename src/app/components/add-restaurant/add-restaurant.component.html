@@ -1,0 +1,114 @@
+<form #addRestaurantForm="ngForm" (ngSubmit)="onRestaurantSubmit()">
+  <legend>Add Restaurant</legend>
+
+  <div class=" form-group">
+    <label for="exampleInputName">Name of Your Restaurant</label>
+    <input [(ngModel)]="newRestaurant.name" name="name" #name="ngModel" type="text" class="form-control"
+      id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter name">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleTextarea">Restaurant Details</label>
+    <textarea [(ngModel)]="newRestaurant.details" name="details" #details="ngModel" class="form-control"
+      id="exampleTextarea" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputAvgCost">Average Cost per Food</label>
+    <input [(ngModel)]="newRestaurant.avgCost" name="avgCost" #avgCost="ngModel" type="text" class="form-control"
+      id="exampleInputAvgCost" aria-describedby="AvgCostHelp" placeholder="Enter Average Cost">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputAddress">Restaurant Address</label>
+    <input [(ngModel)]="newRestaurant.address" name="address" #address="ngModel" type="text" class="form-control"
+      id="exampleInputAddress" aria-describedby="AddressHelp" placeholder="Enter City">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Support Email Address</label>
+    <input [(ngModel)]="newRestaurant.email" name="email" #email="ngModel" type="email" class="form-control"
+      id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPhone">Support Phone Number</label>
+    <input [(ngModel)]="newRestaurant.phone" name="phone" #phone="ngModel" type="text" class="form-control"
+      id="exampleInputPhone" aria-describedby="PhoneHelp" placeholder="Enter Phone Number">
+  </div>
+
+  <fieldset class="form-group">
+    <legend>Food Speciality</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Veg">
+        Vegetarian
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Non-Veg">
+        Non-vegetarian
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Both">
+        Both
+      </label>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <legend>Services Provided By Your Restaurant</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Home Delivery">
+        Home Delivery
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Separate veg/non-veg sections">
+        Separate veg/non-veg sections
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Parking">
+        Parking
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Kids Play Area">
+        Kids Play Area
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Dine-in">
+        Dine-in
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Bear Bar">
+        Bear Bar
+      </label>
+    </div>
+    <div class="form-check ">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Family Rooms">
+        Family Rooms
+      </label>
+    </div>
+  </fieldset>
+
+  <div class="custom-control custom-switch  mb-2">
+    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+    <label class="custom-control-label" for="customSwitch1">Do Your Restaurant Provide Lodging?</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>

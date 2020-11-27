@@ -17,17 +17,9 @@ export class HomeComponent implements OnInit {
     private _router: Router,
     private _restuarantService: RestaurantService) { }
 
-  restaurants: Array<Restaurant>;
-  pagination: Object;
-  count: number
+
 
   ngOnInit(): void {
-    this._restuarantService.getAllRestaurants().subscribe((data: RestaurantResponse) => {
-      this.restaurants = data.data,
-      this.pagination = this.pagination;
-      this.count = data.count;
-    }, err => {
-      this._flash.show(err.error.error, { cssClass: 'alert-danger', timeout: 5000});
-    });
+    
   }
 }
