@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { RestaurantClass } from '../models/restaurant.class';
 import { Restaurant } from '../models/restaurant.model';
 
 @Injectable({
@@ -11,7 +12,9 @@ export class RestaurantService {
   backendUrl: string = 'https://thawing-caverns-75517.herokuapp.com/api/v1/restaurants';
 
   constructor(private _http: HttpClient) { 
-    this.headers.append('Authentication', `Bearer localStorage.getItem('id_token')`);
+    this.headers = this.headers.set('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
+    console.log(this.headers);
+    
   }
 
   getAllRestaurants() {
@@ -22,7 +25,7 @@ export class RestaurantService {
     return this._http.get(`${this.backendUrl}/${restaurant_id}`, {headers: this.headers});
   }
 
-  addNewRestaurant(restData: Restaurant) {
+  addNewRestaurant(restData: RestaurantClass) {
     return this._http.post(`${this.backendUrl}/`, restData, {headers: this.headers});
   }
 

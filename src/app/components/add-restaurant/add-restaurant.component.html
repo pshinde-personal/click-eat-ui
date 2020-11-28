@@ -1,15 +1,15 @@
 <form #addRestaurantForm="ngForm" (ngSubmit)="onRestaurantSubmit()">
   <legend>Add Restaurant</legend>
-
+  <!-- {{addRestaurantForm.valid}} -->
   <div class=" form-group">
     <label for="exampleInputName">Name of Your Restaurant</label>
-    <input [(ngModel)]="newRestaurant.name" name="name" #name="ngModel" type="text" class="form-control"
+    <input [(ngModel)]="newRestaurant.name" name="name" #name="ngModel" type="text" class="form-control" required
       id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter name">
   </div>
 
   <div class="form-group">
     <label for="exampleTextarea">Restaurant Details</label>
-    <textarea [(ngModel)]="newRestaurant.details" name="details" #details="ngModel" class="form-control"
+    <textarea [(ngModel)]="newRestaurant.details" name="details" #details="ngModel" class="form-control" required
       id="exampleTextarea" rows="3"></textarea>
   </div>
 
@@ -21,92 +21,97 @@
 
   <div class="form-group">
     <label for="exampleInputAddress">Restaurant Address</label>
-    <input [(ngModel)]="newRestaurant.address" name="address" #address="ngModel" type="text" class="form-control"
+    <input [(ngModel)]="newRestaurant.address" name="address" #address="ngModel" type="text" class="form-control" required
       id="exampleInputAddress" aria-describedby="AddressHelp" placeholder="Enter City">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Support Email Address</label>
-    <input [(ngModel)]="newRestaurant.email" name="email" #email="ngModel" type="email" class="form-control"
+    <input [(ngModel)]="newRestaurant.email" name="email" #email="ngModel" type="email" class="form-control" required
       id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
 
   <div class="form-group">
     <label for="exampleInputPhone">Support Phone Number</label>
-    <input [(ngModel)]="newRestaurant.phone" name="phone" #phone="ngModel" type="text" class="form-control"
+    <input [(ngModel)]="newRestaurant.phone" name="phone" #phone="ngModel" type="text" class="form-control" required
       id="exampleInputPhone" aria-describedby="PhoneHelp" placeholder="Enter Phone Number">
   </div>
 
-  <fieldset class="form-group">
+  <fieldset class="form-group" ngModelGroup="speciality">
     <legend>Food Speciality</legend>
     <div class="form-check">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Veg">
+        <input class="form-check-input" name="Veg" [(ngModel)]="speciality[0].selected" type="checkbox">
         Vegetarian
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Non-Veg">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="speciality[1].selected" name="Non-Veg">
         Non-vegetarian
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Both">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="speciality[2].selected" name="Both">
         Both
       </label>
     </div>
   </fieldset>
 
-  <fieldset class="form-group">
+  <!-- {{addRestaurantForm.value | json}} -->
+  <fieldset class="form-group" ngModelGroup="services">
     <legend>Services Provided By Your Restaurant</legend>
     <div class="form-check">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Home Delivery">
-        Home Delivery
+        <input class="form-check-input" name="HomeDelivery" [(ngModel)]="services[0].selected" type="checkbox">
+        {{services[0].name}}
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Separate veg/non-veg sections">
-        Separate veg/non-veg sections
+        <input class="form-check-input" name="Separate" [(ngModel)]="services[3].selected" type="checkbox">
+        {{services[3].name}}
+
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Parking">
-        Parking
+        <input class="form-check-input" name="Parking" [(ngModel)]="services[2].selected" type="checkbox">
+        {{services[2].name}}
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Kids Play Area">
-        Kids Play Area
+        <input class="form-check-input" name="Kids" [(ngModel)]="services[4].selected" type="checkbox">
+        {{services[4].name}}
+
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Dine-in">
-        Dine-in
+        <input class="form-check-input" name="Dine-in" [(ngModel)]="services[1].selected" type="checkbox">
+        {{services[1].name}}
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Bear Bar">
-        Bear Bar
+        <input class="form-check-input" name="Bear" [(ngModel)]="services[5].selected" type="checkbox">
+        {{services[5].name}}
+
       </label>
     </div>
     <div class="form-check ">
       <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" value="Family Rooms">
-        Family Rooms
+        <input class="form-check-input" name="Family" [(ngModel)]="services[6].selected" type="checkbox">
+        {{services[6].name}}
+
       </label>
     </div>
   </fieldset>
 
   <div class="custom-control custom-switch  mb-2">
-    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+    <input type="checkbox" class="custom-control-input" name="lodging" ngModel (click)="toggleLodging()" id="customSwitch1">
     <label class="custom-control-label" for="customSwitch1">Do Your Restaurant Provide Lodging?</label>
   </div>
 

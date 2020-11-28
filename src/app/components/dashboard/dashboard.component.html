@@ -1,4 +1,4 @@
 <p>dashboard works!</p>
 <h5>role of user is {{user?.role}}</h5>
 
-<app-add-restaurant></app-add-restaurant>
+<app-add-restaurant *ngIf="user?.role=='admin' || user?.role == 'publisher'" [user]="user"></app-add-restaurant>

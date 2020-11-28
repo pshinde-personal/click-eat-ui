@@ -11,8 +11,10 @@ export class RestaurantClass {
   public lodging: boolean = false;
   public phone: string;
   public photo: string;
-  public services: Array<string>;
-  public speciality: Array<string>;
+  public services: Array<string>  = [
+  ];
+  public speciality: Array<string> = [
+  ];
   public owner: {
     role: string;
     createdAt: Date;
