@@ -11,11 +11,7 @@ export class RestaurantService {
   headers = new HttpHeaders();
   backendUrl: string = 'https://thawing-caverns-75517.herokuapp.com/api/v1/restaurants';
 
-  constructor(private _http: HttpClient) { 
-    this.headers = this.headers.set('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
-    console.log(this.headers);
-    
-  }
+  constructor(private _http: HttpClient) {}
 
   getAllRestaurants() {
     return this._http.get(`${this.backendUrl}/`, { headers: this.headers});
