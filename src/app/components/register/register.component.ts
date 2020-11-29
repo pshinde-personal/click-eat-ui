@@ -42,13 +42,13 @@ export class RegisterComponent implements OnInit {
   onRegisterSubmit() {
     this.specifyUserRole();
     const user = this.user;
-    console.log(user);
     this._auth.registerUser(user).subscribe(data => {
-      this._flash.show('registered user', { cssClass: 'alert-success', timeout: 3000});
+      this._flash.show('registered user', { cssClass: 'alert-success', timeout: 5000});
       this.form.reset();
       this._router.navigate(['/login']);
     }, err => {
-      this._flash.show(err.error.error, { cssClass: 'alert-danger', timeout: 3000});
+      this._flash.show(err, { cssClass: 'alert-danger', timeout: 10000});
     })
+    return;
   }
 }

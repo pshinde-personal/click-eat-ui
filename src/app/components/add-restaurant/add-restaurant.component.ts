@@ -57,32 +57,23 @@ export class AddRestaurantComponent implements OnInit {
   }
 
   onRestaurantSubmit() {
-    // this._flash.show('submit succesful', { cssClass: 'alert-success', timeout: 5000});
-
     this.newRestaurant.services = this.makeArrayFromCheckBoxValues(this.services);
     this.newRestaurant.speciality = this.makeArrayFromCheckBoxValues(this.speciality);
     this.newRestaurant.owner = this.user;
     
     if(this.form.valid) {
-      alert('form is valid');
       this._resturantService.addNewRestaurant(this.newRestaurant).subscribe((res)=> {
-        console.log(res);
         this.form.reset();
         this._router.navigate(['/']);
-        this._flash.show('Restaurant data saved successfully', {cssClass: 'alert-success', timeout: 5000})
+        this._flash.show('Restaurant data saved successfully', {cssClass: 'alert-success', timeout: 10000})
       }, (err)=> {
-        console.log(err);
-        this._flash.show(err.error.error, { cssClass: 'alert-danger', timeout: 5000});
-        
+        this._flash.show(err, { cssClass: 'alert-danger', timeout: 10000});
       })
       
     }
     else {
-    // this._flash.show('something missing, make sure you have filled everything', { cssClass: 'alert-danger', timeout: 5000});
-      alert('form is Not Valid');
+    this._flash.show('something missing, make sure you have filled everything', { cssClass: 'alert-danger', timeout: 10000});
     }
-    
-    console.log(this.newRestaurant);
-    
+    return ;
   }
 }

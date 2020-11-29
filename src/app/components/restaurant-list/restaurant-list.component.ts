@@ -27,7 +27,7 @@ export class RestaurantListComponent implements OnInit {
       this.pagination = this.pagination;
       this.count = data.count;
     }, err => {
-      this._flash.show(err.error.error, { cssClass: 'alert-danger', timeout: 5000});
+      this._flash.show(err, { cssClass: 'alert-danger', timeout: 5000});
     });
   }
 
