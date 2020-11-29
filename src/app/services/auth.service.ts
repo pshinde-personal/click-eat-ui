@@ -11,36 +11,28 @@ export class AuthService {
   user: any;
 
   backendUrl: string = 'https://thawing-caverns-75517.herokuapp.com/api/v1';
-  // backendUrl: string = 'http://localhost:5000/api/v1';
 
   constructor(private _http: HttpClient,
     private jwtHelper: JwtHelperService) { }
   
   registerUser(user) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this._http.post(`${this.backendUrl}/auth/register`, user, {headers: headers});
+    return this._http.post(`${this.backendUrl}/auth/register`, user);
   }
 
   loginUser(user) {
     let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    // const demo = {
-    //   email: 'pratik@gmail.com',
-    //   password: '123456'
-    // }
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Skip', 'true');
     return this._http.post(`${this.backendUrl}/auth/login`, user, {headers: headers});
   }
 
   authenticateUser() {
-    let headers = new HttpHeaders();
-    this.loadToken();
-    headers = headers.set('Authorization', `Bearer ${this.authToken}`);
-    return this._http.get(`${this.backendUrl}/auth/getMe`, {headers: headers})
-    
+    return this._http.get(`${this.backendUrl}/auth/getMe`)
   }
 
   isLoggedIn() {
+    this.loadToken();
+    this.loadUser();
     return !this.jwtHelper.isTokenExpired(this.authToken);
   }
 

@@ -1,21 +1,23 @@
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private injector: Injector) { }
+  constructor() { }
 
-  intercept(req, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    if(req.headers.get('Skip')){
+      return next.handle(req);
+    }
     let cloned = req.clone({
       setHeaders: {
-        Authorization : `Bearer ${localStorage.getItem('id_token')}`
+        'Content-Type': `application/json`, 
+        'Authorization': `Bearer ${localStorage.getItem('id_token')}`
       }
     });
-    console.log(cloned);
-    
     return next.handle(cloned);
   }
 }
