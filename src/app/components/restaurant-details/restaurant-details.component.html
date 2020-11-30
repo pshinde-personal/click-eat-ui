@@ -1,0 +1,20 @@
+<div class="jumbotron"
+  style="background-image: linear-gradient(rgba(0,0,0,.7), rgba(0, 0, 0, .7)),  url('assets/tandoori-chicken-indian-food.jpg');">
+  <h5 class="display-3">{{data?.name}}</h5>
+  <p class="lead my-4">{{data?.details}}</p>
+  <hr class="my-4">
+  <p>{{data?.email}}</p>
+  <p>{{data?.phone}}</p>
+
+</div>
+
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" (click)="onOverviewSelect()">Overiew</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" (click)="onOrderSelect()">Order</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

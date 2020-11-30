@@ -1,0 +1,11 @@
+.jumbotron {
+  color: cornsilk;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h5 {
+  background-color: cornsilk;
+}

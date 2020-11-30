@@ -9,10 +9,28 @@ import { RestaurantListComponent } from './components/restaurant-list/restaurant
 import { RestaurantComponent } from './components/restaurant-list/restaurant/restaurant.component';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { WildcardComponent } from './components/wildcard/wildcard.component';
+import { RestaurantDetailOverviewComponent } from './components/restaurant-details/restaurant-detail-overview/restaurant-detail-overview.component';
+import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
+import { RestaurantDetailOrderComponent } from './components/restaurant-details/restaurant-detail-order/restaurant-detail-order.component';
 
 const routes: Routes = [
   {
     path: '', component: HomeComponent
+  },
+  {
+    path: 'restaurants/:id', component: RestaurantDetailsComponent, 
+    children: [
+      {
+        path: 'overview', component: RestaurantDetailOverviewComponent
+      },
+      {
+        path: 'order', component: RestaurantDetailOrderComponent
+      }
+    ]
+  },
+  {
+    path: 'restaurants', component: RestaurantListComponent
   },
   {
     path: 'register', component: RegisterComponent
@@ -25,6 +43,10 @@ const routes: Routes = [
   },
   {
     path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard]
+  },
+
+  {
+    path: '**', component: WildcardComponent
   }
 ];
 
@@ -35,5 +57,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const AppRoutingComponents = [
   LoginComponent, ProfileComponent, HomeComponent, RegisterComponent, 
-  RestaurantComponent, RestaurantListComponent, DashboardComponent, AddRestaurantComponent
+  RestaurantComponent, RestaurantListComponent, DashboardComponent, AddRestaurantComponent, RestaurantDetailOverviewComponent, RestaurantDetailOrderComponent
 ]

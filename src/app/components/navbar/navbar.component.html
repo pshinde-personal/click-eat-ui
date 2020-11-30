@@ -11,8 +11,12 @@
         <a class="nav-link" [routerLink]="['/']">Home
         </a>
       </li>
-</ul>
-<ul class="navbar-nav navbar-right">
+      <li class="nav-item " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['/restaurants']">restaurants
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right">
       <li *ngIf="getAuthProperty().isLoggedIn()" class="nav-item " [routerLinkActive]="['active']"
         [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/profile']">profile

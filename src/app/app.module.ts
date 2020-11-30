@@ -15,6 +15,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { WildcardComponent } from './components/wildcard/wildcard.component';
+import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
+import { RestaurantDetailOverviewComponent } from './components/restaurant-details/restaurant-detail-overview/restaurant-detail-overview.component';
+import { RestaurantDetailOrderComponent } from './components/restaurant-details/restaurant-detail-order/restaurant-detail-order.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
     NavbarComponent,
     AddRestaurantComponent,
     AppRoutingComponents,
+    WildcardComponent,
+    RestaurantDetailsComponent,
+    RestaurantDetailOverviewComponent, 
+    RestaurantDetailOrderComponent
   ],
   imports: [
     NgbModule,
