@@ -29,7 +29,6 @@ export class RestaurantDetailsComponent implements OnInit {
       id = params.get('id')
     })
     this._restaurant.getRestaurantById(id).subscribe((data: SingleRestaurantResponse)=>{
-      console.log(data.data);
       
       this.data = data.data;
     });

@@ -1,1 +1,15 @@
 <p>restaurant-detail-order works!</p>
+<table class="table table-hover">
+  <tr *ngFor="let item of food_items">
+    <td>
+      <h4>{{item?.name}}</h4>
+      <h6>{{item?.details}}</h6>
+      <small>{{item?.price | currency:'INR'}}</small>
+    </td>
+    <td style="display: flex;">
+      <button>-</button>
+      Add
+      <button>+</button>
+    </td>
+  </tr>
+</table>
