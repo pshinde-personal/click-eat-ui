@@ -23,7 +23,7 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set('Skip', 'true');
-    return this._http.post(`${this.backendUrl}/auth/login`, user, {headers: headers});
+    return this._http.post(`${this.backendUrl}/auth/login`, user, { headers });
   }
 
   authenticateUser() {
@@ -34,6 +34,18 @@ export class AuthService {
     this.loadToken();
     this.loadUser();
     return !this.jwtHelper.isTokenExpired(this.authToken);
+  }
+
+  handleForgotPass(email: string) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Skip', 'true');
+    return this._http.post(`${this.backendUrl}/auth/forgotpassword`, { email }, { headers });
+  } 
+
+  handleResetPass(password: string, hash: string) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Skip', 'true');
+    return this._http.put(`${this.backendUrl}/auth/resetpassword/${hash}`, { password }, { headers });
   }
 
   loadToken() {

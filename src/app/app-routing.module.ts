@@ -13,6 +13,8 @@ import { WildcardComponent } from './components/wildcard/wildcard.component';
 import { RestaurantDetailOverviewComponent } from './components/restaurant-details/restaurant-detail-overview/restaurant-detail-overview.component';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { RestaurantDetailOrderComponent } from './components/restaurant-details/restaurant-detail-order/restaurant-detail-order.component';
+import { FogotPassComponent } from './components/fogot-pass/fogot-pass.component';
+import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,12 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'forgot_pass', component: FogotPassComponent
+  },
+  {
+    path: 'reset_pass/:hash', component: ResetPassComponent
   },
   {
     path: 'profile', component: ProfileComponent, canActivate: [ AuthGuard]

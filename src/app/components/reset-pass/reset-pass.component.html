@@ -1,0 +1,20 @@
+<form #form="ngForm" (ngSubmit)="onResetSubmit()">
+  <legend>Reset Your Password with New One</legend>
+  <div class="form-group">
+    <label for="exampleInputEmail1">New Password</label>
+    <input type="text" name="npass" minlength="6" [(ngModel)]="pass1" #npass="ngModel" class="form-control"
+      id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter New Password" required>
+  </div>
+  <div class="text-danger" [class.d-none]="(npass.untouched) || (npass.valid)">Please enter new password!</div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Re-enter Password</label>
+    <input type="text" name="cpass" minlength="6" [(ngModel)]="pass2" #cpass="ngModel" class="form-control"
+      id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password Again" required>
+  </div>
+  <div class="text-danger" [class.d-none]="((npass.value) === (cpass.value) )|| cpass.pristine">Make Sure Both
+    Passwords
+    are Same!</div>
+  <p class="text-warning">**password should be atleast 6 characters long...**</p>
+  <button *ngIf='(npass.value == cpass.value) && form.valid' type="submit" class="btn btn-primary"
+    [disabled]="!form.valid">Reset</button>
+</form>

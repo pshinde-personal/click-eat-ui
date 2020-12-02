@@ -12,5 +12,6 @@
     <input name="pass" [(ngModel)]="user.password" #pass="ngModel" type="password" class="form-control" required
       id="exampleInputPassword1" placeholder="Password">
   </div>
+  <p class=""><a [routerLink]="['/forgot_pass']">Forgot Password ?</a></p>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

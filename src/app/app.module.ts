@@ -19,6 +19,8 @@ import { WildcardComponent } from './components/wildcard/wildcard.component';
 import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { RestaurantDetailOverviewComponent } from './components/restaurant-details/restaurant-detail-overview/restaurant-detail-overview.component';
 import { RestaurantDetailOrderComponent } from './components/restaurant-details/restaurant-detail-order/restaurant-detail-order.component';
+import { FogotPassComponent } from './components/fogot-pass/fogot-pass.component';
+import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { RestaurantDetailOrderComponent } from './components/restaurant-details/
     WildcardComponent,
     RestaurantDetailsComponent,
     RestaurantDetailOverviewComponent, 
-    RestaurantDetailOrderComponent
+    RestaurantDetailOrderComponent, FogotPassComponent, ResetPassComponent
   ],
   imports: [
     NgbModule,
