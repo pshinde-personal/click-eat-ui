@@ -1,9 +1,12 @@
+import * as CartActions from './../../../actions/cart.actions';
+import { AppState } from '../../../app.state';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { pipe } from 'rxjs';
 import { FoodItemClassResponse, FoodItemsClassResponse } from 'src/app/models/foodItem.class';
 import { FoodItemsService } from 'src/app/services/food-items.service';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-restaurant-detail-order',
@@ -15,12 +18,16 @@ export class RestaurantDetailOrderComponent implements OnInit {
   constructor(private _router: Router, 
     private _route: ActivatedRoute,
     private _flash: FlashMessagesService,
-    private _food_item_service: FoodItemsService) { }
+    private _food_item_service: FoodItemsService,
+    private _orderService: OrdersService,
+    private store: Store<AppState>
+    ) { }
 
   food_items: FoodItemClassResponse;
   pagination: any;
   count: number;
 
+  orderCount = [];
   ngOnInit(): void {
     this.loadItems();
   }
@@ -39,4 +46,22 @@ export class RestaurantDetailOrderComponent implements OnInit {
     });
     return ;
   }
+
+  add(item) {
+    
+    this.store.dispatch(new CartActions.AddCart(item))
+    console.log();
+    
+  }
+
+  getCount(id) {
+    // let count = this._orderService.getCount(id);
+
+  }
+
+  remove(item) {
+    this.store.dispatch(new CartActions.RemoveCart(item))
+
+  }
+
 }

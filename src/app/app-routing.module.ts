@@ -24,6 +24,9 @@ const routes: Routes = [
     path: 'restaurants/:id', component: RestaurantDetailsComponent, 
     children: [
       {
+        path: '', component: RestaurantDetailOrderComponent
+      },
+      {
         path: 'overview', component: RestaurantDetailOverviewComponent
       },
       {

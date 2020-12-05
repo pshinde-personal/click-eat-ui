@@ -21,6 +21,7 @@
     "@angular/router": "~10.1.5",
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "@ngrx/store": "^10.1.0",
     "angular2-flash-messages": "^3.0.1",
     "angular2-jwt": "^0.2.3",
     "ng-flash-messages": "^0.3.0",

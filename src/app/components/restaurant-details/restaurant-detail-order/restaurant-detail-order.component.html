@@ -1,4 +1,6 @@
 <p>restaurant-detail-order works!</p>
+
+<app-read></app-read>
 <table class="table table-hover">
   <tr *ngFor="let item of food_items">
     <td>
@@ -7,9 +9,9 @@
       <small>{{item?.price | currency:'INR'}}</small>
     </td>
     <td style="display: flex;">
-      <button>-</button>
-      Add
-      <button>+</button>
+      <button (click)="remove(item)">-</button>
+      <p *ngIf="orderCount.length != 0">{{getCount(item._id)}}</p>
+      <button (click)="add(item)">+</button>
     </td>
   </tr>
 </table>
