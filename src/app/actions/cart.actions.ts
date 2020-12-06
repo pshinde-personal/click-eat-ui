@@ -3,6 +3,7 @@ import { Cart } from './../models/cart.model'
 
 export const ADD_TO_CART          = 'AddToCart'
 export const REMOVE_FROM_CART     = 'RemoveFromCart'
+export const ADD_ALL              = 'AddAll'
 
 export class AddCart implements Action {
   readonly type = ADD_TO_CART
@@ -16,4 +17,4 @@ export class RemoveCart implements Action {
   constructor(public payload: Cart) {}
 }
 
-export type Actions = AddCart | RemoveCart
+export type Actions = AddCart | RemoveCart 

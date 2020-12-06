@@ -1,10 +1,36 @@
-<div class="right" *ngIf="items">
-
-  <h3>Cart Items</h3>
-  <ul>
-    <li *ngFor="let item of items | async">
-      <p>{{ item.name }}</p>
-    </li>
-  </ul>
-
+<div *ngIf="isItems">
+  <h3 class="text-center">Cart Items</h3>
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Units</th>
+      <th>Unit Price</th>
+      <th>Calc. Price</th>
+    </tr>
+    <tr *ngFor="let item of items | async">
+      <td>
+        <p class="font-weight-bold">{{item?.name}}</p>
+      </td>
+      <td class="font-weight-bold">{{item?.quantity}}</td>
+      <td class="font-weight-bold">{{item?.price | currency: 'INR'}}</td>
+      <td class="font-weight-bold">{{item?.subtotal | currency: 'INR'}}</td>
+    </tr>
+  </table>
+  <hr>
+  <div class="d-flex justify-content-between">
+    <p class="font-weight-bold">SubTotal: </p>
+    <p class="font-weight-bold">{{total | currency: 'INR'}}</p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>Delivery Fees: </p>
+    <p>{{deliveryFees | currency: 'INR'}}</p>
+  </div>
+  <div class="d-flex justify-content-between  ">
+    <p>Tax:</p>
+    <p>{{taxPrice | percent}}</p>
+  </div>
+  <div class="d-flex justify-content-between  ">
+    <p class="font-weight-bold">TOTAL:</p>
+    <p class="font-weight-bold">{{getFinalTotal() | currency: 'INR'}}</p>
+  </div>
 </div>

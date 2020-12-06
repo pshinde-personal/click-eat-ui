@@ -1,12 +1,12 @@
-import * as CartActions from './../../../actions/cart.actions';
-import { AppState } from '../../../app.state';
+import * as CartActions from 'src/app/actions/cart.actions';
+import { AppState } from 'src/app/app.state';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { FoodItemClassResponse, FoodItemsClassResponse } from 'src/app/models/foodItem.class';
+import { FoodItemsClassResponse } from 'src/app/models/foodItem.class';
 import { FoodItemsService } from 'src/app/services/food-items.service';
-import { OrdersService } from 'src/app/services/orders.service';
+import { Cart } from 'src/app/models/cart.model';
 
 @Component({
   selector: 'app-restaurant-detail-order',
@@ -19,11 +19,9 @@ export class RestaurantDetailOrderComponent implements OnInit {
     private _route: ActivatedRoute,
     private _flash: FlashMessagesService,
     private _food_item_service: FoodItemsService,
-    private _orderService: OrdersService,
     private store: Store<AppState>
     ) { }
 
-  food_items: FoodItemClassResponse;
   pagination: any;
   count: number;
 
@@ -31,37 +29,50 @@ export class RestaurantDetailOrderComponent implements OnInit {
   ngOnInit(): void {
     this.loadItems();
   }
+  food_items : Cart[] = [];
 
   loadItems() {
-    //  get restaurant id from url by spliting it
     let rest_id;
     rest_id = this._router.routerState.snapshot.url.split('/')[2];
 
     this._food_item_service.getFoodItemsOfRestaurant(rest_id).subscribe((data: FoodItemsClassResponse) => {
       this.food_items = data.data;
-      this.pagination = data.pagination;
-      this.count = data.count;
     }, error => {
       this._flash.show(error, { cssClass: 'alert-danger', timeout: 10000});
     });
     return ;
   }
 
-  add(item) {
+  add(item: Cart) {
+    let index = this.food_items.indexOf(item);
+    this.food_items = this.food_items.filter(i=> item._id !== i._id)
+    let newQuantity = item.quantity + 1;
+    let newItem: Cart = {
+      ...item, 
+      quantity: newQuantity,
+      subtotal: newQuantity * item.price,
+    };
     
-    this.store.dispatch(new CartActions.AddCart(item))
-    console.log();
-    
+    Cart.setAddTotal(item.price);
+    this.food_items.splice(index, 0, newItem);
+    this.store.dispatch(new CartActions.AddCart(newItem));
   }
 
-  getCount(id) {
-    // let count = this._orderService.getCount(id);
-
-  }
-
-  remove(item) {
-    this.store.dispatch(new CartActions.RemoveCart(item))
-
+  remove(item: Cart) {
+    if(item.quantity> 0) {
+      let index = this.food_items.indexOf(item);
+      this.food_items = this.food_items.filter(i=> item._id !== i._id);
+      
+      let newQuantity = item.quantity - 1;
+      let newItem: Cart = {
+        ...item, 
+        quantity: newQuantity,
+        subtotal: item.subtotal - item.price
+      };
+      Cart.setReoveFromTotal(item.price);
+      this.food_items.splice(index, 0, newItem);
+      this.store.dispatch(new CartActions.RemoveCart(newItem));
+    }
   }
 
 }

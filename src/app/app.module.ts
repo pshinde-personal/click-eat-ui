@@ -10,7 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages'
 import { AuthService } from './services/auth.service';
-import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule, } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth.guard';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
@@ -56,7 +56,6 @@ import { ReadComponent } from './read/read.component';
     }),
     HttpClientModule,
     FlashMessagesModule.forRoot(),
-    StoreModule.forRoot({}, {})
   ],
   providers: [AuthService, JwtHelperService, AuthGuard, 
     {

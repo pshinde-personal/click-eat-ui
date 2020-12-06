@@ -9,16 +9,30 @@ import { AppState } from '../app.state';
   templateUrl: './read.component.html',
   styleUrls: ['./read.component.css']
 })
-export class ReadComponent implements OnInit {
+export class ReadComponent implements OnInit{
 
   constructor(private store: Store<AppState>) { }
 
   items: Observable<Cart[]>
+  isItems: boolean = false;
+  total: number = 0;
+  deliveryFees: number = 79;
+  taxPrice: number = .12;
 
   ngOnInit(): void {
     this.items = this.store.select('cart')
-    console.log(this.items);
-    
+    this.items.subscribe(_observe=> {
+      // this.isItems = true
+      this.changeTotal()
+    })
   }
 
+  changeTotal() {
+    this.total = Cart.getTotal();
+  }
+
+  getFinalTotal(){
+    let sub_del = (this.total + this.deliveryFees)
+    return ( sub_del * this.taxPrice) + sub_del;
+  }
 }

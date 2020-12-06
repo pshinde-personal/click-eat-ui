@@ -1,4 +1,7 @@
-export class FoodItemClassResponse {
+import { Cart } from './cart.model'
+
+export interface FoodItemModelResponse {
+  _id: string
   name: string
   details: string
   slug: string
@@ -13,9 +16,15 @@ export class FoodItemClassResponse {
   user: string
 }
 
+export class FoodItemClassResponse {
+  constructor(public dataArray: Array<Cart>) {
+
+  }
+}
+
 export class FoodItemsClassResponse {
   success: boolean
-  data: FoodItemClassResponse
+  data: Array<Cart>
   pagination: any
   count: number
 }

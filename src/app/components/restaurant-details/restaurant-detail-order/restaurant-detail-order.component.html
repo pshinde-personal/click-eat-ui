@@ -1,17 +1,27 @@
-<p>restaurant-detail-order works!</p>
 
-<app-read></app-read>
-<table class="table table-hover">
-  <tr *ngFor="let item of food_items">
-    <td>
-      <h4>{{item?.name}}</h4>
-      <h6>{{item?.details}}</h6>
-      <small>{{item?.price | currency:'INR'}}</small>
-    </td>
-    <td style="display: flex;">
-      <button (click)="remove(item)">-</button>
-      <p *ngIf="orderCount.length != 0">{{getCount(item._id)}}</p>
-      <button (click)="add(item)">+</button>
-    </td>
-  </tr>
-</table>
+  <table class="table table-hover">
+    <tr *ngFor="let item of food_items ">
+      <td>
+        <h4>{{item?.name}}</h4>
+        <h6>{{item?.details}}</h6>
+        <small>{{item?.price | currency:'INR'}}</small>
+      </td>
+      <ng-template [ngIf]="item.quantity == 0" [ngIfElse]="order">
+        <td style="display: flex; align-items: baseline;">
+          <p class="mx-2 px-2">Add</p>
+          <button (click)="add(item)" class="px-2">+</button>
+        </td>
+      </ng-template>
+      <ng-template #order>
+        <td style="display: flex; align-items: baseline;">
+          <button (click)="remove(item)" class="px-2">-</button>
+          <p class="mx-2 px-2">{{item.quantity}}</p>
+          <button (click)="add(item)" class="px-2">+</button>
+        </td>
+      </ng-template>
+    </tr>
+  </table>
+  <div class="position-sticky py-2" style="bottom: 0; height: 20px; background-color: black;">
+  
+    <!-- <app-read class="position-fixed position-absolute col-md-12" style="bottom: 0;"></app-read>   -->
+  </div>
