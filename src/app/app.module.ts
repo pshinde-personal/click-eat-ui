@@ -24,6 +24,9 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducers/cart.reducer';
 import { ReadComponent } from './read/read.component';
+import { MapComponent } from './components/map/map.component';
+import { AngularOpenlayersModule } from 'ngx-openlayers';
+import { GeoLocationService } from './services/geo-location.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { ReadComponent } from './read/read.component';
     WildcardComponent,
     RestaurantDetailsComponent,
     RestaurantDetailOverviewComponent, 
-    RestaurantDetailOrderComponent, FogotPassComponent, ResetPassComponent, ReadComponent
+    RestaurantDetailOrderComponent, FogotPassComponent, ResetPassComponent, ReadComponent, MapComponent
   ],
   imports: [
     NgbModule,
@@ -56,6 +59,7 @@ import { ReadComponent } from './read/read.component';
     }),
     HttpClientModule,
     FlashMessagesModule.forRoot(),
+    AngularOpenlayersModule
   ],
   providers: [AuthService, JwtHelperService, AuthGuard, 
     {
@@ -67,7 +71,8 @@ import { ReadComponent } from './read/read.component';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptorService,
       multi: true
-    }
+    },
+    GeoLocationService
   ],
   bootstrap: [AppComponent]
 })

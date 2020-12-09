@@ -1,9 +1,11 @@
 <!-- <app-restaurant-list></app-restaurant-list> -->
-<header>
+<app-map [showDebugInfo]="true" [showControlsZoom]="true" [showControlsCurrentLocation]="true"
+  (addressChanged)="onAddressChange($event)"></app-map>
+<!-- <header>
   <div class="hero-text-box">
     <h1>Goodbye junk food.<br>Hello super healthy meals.</h1>
     <h4 class="my-5">welcome to CLICK-EAT.</h4>
     <a [routerLink]="['/restaurants']" class="btn btn-full">I’m hungry</a>
     <a href="#" class="btn btn-ghost">Show me more</a>
   </div>
-</header>
+</header> -->

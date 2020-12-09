@@ -25,6 +25,8 @@
     "angular2-flash-messages": "^3.0.1",
     "angular2-jwt": "^0.2.3",
     "ng-flash-messages": "^0.3.0",
+    "ngx-openlayers": "0.8.22",
+    "openlayers": "^4.6.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

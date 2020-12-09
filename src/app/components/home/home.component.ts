@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+  onAddressChange(event) {
+    console.log(event);
+  }
 }
