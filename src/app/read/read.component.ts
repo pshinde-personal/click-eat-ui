@@ -14,7 +14,7 @@ export class ReadComponent implements OnInit{
   constructor(private store: Store<AppState>) { }
 
   items: Observable<Cart[]>
-  isItems: boolean = false;
+  // isItems: boolean = false;
   total: number = 0;
   deliveryFees: number = 79;
   taxPrice: number = .12;

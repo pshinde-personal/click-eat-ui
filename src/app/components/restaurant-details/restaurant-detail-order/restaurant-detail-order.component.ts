@@ -16,7 +16,6 @@ import { Cart } from 'src/app/models/cart.model';
 export class RestaurantDetailOrderComponent implements OnInit {
 
   constructor(private _router: Router, 
-    private _route: ActivatedRoute,
     private _flash: FlashMessagesService,
     private _food_item_service: FoodItemsService,
     private store: Store<AppState>
@@ -24,12 +23,14 @@ export class RestaurantDetailOrderComponent implements OnInit {
 
   pagination: any;
   count: number;
-
+  total: number
   orderCount = [];
   ngOnInit(): void {
     this.loadItems();
   }
   food_items : Cart[] = [];
+
+  expand: boolean = false;
 
   loadItems() {
     let rest_id;
