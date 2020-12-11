@@ -1,1 +1,25 @@
-<p>restaurant-detail-overview works!</p>
+<div class="d-flex py-4" style="height: auto; position: relative; ">
+  <div class="col-md-6">
+    <h3 class="text-center py-2">
+      {{restaurant?.name}}
+    </h3>
+    <p class="text-center">{{restaurant?.details}}</p>
+    <div>
+      <h5>services that we provide: </h5>
+      <ul>
+        <li *ngFor="let service of restaurant?.services">{{service}}</li>
+      </ul>
+      <h5>specialties we have: [Veg | Non-veg | Both]</h5>
+      <ul>
+        <li *ngFor="let spec of restaurant?.speciality">{{spec}}</li>
+      </ul>
+      <h5 *ngIf="restaurant?.lodging">We have lodging service as well! In case, if you want to live.</h5>
+    </div>
+  </div>
+  <div class="col-md-6 position-absolute" style="right: 0; top: 0; height: auto;">
+    <app-map *ngIf="restaurant" [showDebugInfo]="false" [showControlsZoom]="true"
+      [givenCoordinates]="(restaurant)?.location?.coordinates" [showControlsCurrentLocation]="false"
+      (addressChanged)="onAddressChange($event)"></app-map>
+    <h6>{{address}}</h6>
+  </div>
+</div>

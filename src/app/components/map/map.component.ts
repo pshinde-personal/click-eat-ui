@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { proj, View } from 'openlayers'
+import { Coordinate, proj, View } from 'openlayers'
 import { GeoLocationService } from 'src/app/services/geo-location.service';
 import { marker } from './osm-view/marker.image';
 
@@ -16,20 +16,21 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input()
   geoReverseService = 'https://nominatim.openstreetmap.org/reverse?key=iTzWSiYpGxDvhATNtSrqx5gDcnMOkntL&format=json&addressdetails=1&lat={lat}&lon={lon}'
 
+  @Input() givenCoordinates: Coordinate
   @Input()
   width: string
   @Input()
   height: string
 
   @Input()
-  latitude = 52.520008
+  latitude = 20.5937
   @Input()
-  longitude = 13.404954
+  longitude = 78.9629
 
   @Input()
-  latitudePointer = 52.520008
+  latitudePointer = 20.5937
   @Input()
-  longitudePointer = 13.404954
+  longitudePointer = 78.9629
 
   @Input()
   showControlsZoom: boolean
@@ -64,6 +65,12 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if(this.givenCoordinates !== null) {
+      this.longitude = this.longitudePointer = this.givenCoordinates[0]
+      this.latitude = this.latitudePointer = this.givenCoordinates[1]
+      this.reverseGeo()
+    }
+    
     if (this.showControlsCurrentLocation) {
       this.geoLocationService.getLocation().subscribe((position) => {
         this.position = position
@@ -170,7 +177,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
       this.pointedAddress = address.join(', ')
 
-      this.addressChanged.emit(this.pointedAddress)
+      this.addressChanged.emit(this.pointedAddressOrg)
     })
   }
 

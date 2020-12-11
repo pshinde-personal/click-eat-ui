@@ -17,13 +17,8 @@ export class HomeComponent implements OnInit {
     private _router: Router,
     private _restuarantService: RestaurantService) { }
 
-
-
   ngOnInit(): void {
     
   }
 
-  onAddressChange(event) {
-    console.log(event);
-  }
 }

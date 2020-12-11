@@ -1,3 +1,4 @@
+import { Coordinate } from 'openlayers';
 import { Restaurant } from './restaurant.model';
 
 export class RestaurantClass {
@@ -40,10 +41,14 @@ export class RestaurantResponseClass {
   public owner: string
 }
 
+export class HttpRestaurantResponseClass {
+  public data: RestaurantResponseClass
+  public success: boolean
+}
 class Location {
   public type: string
   public city: string
-  public coordinates: Array<number>
+  public coordinates: Coordinate
   public country: number
   public zipcode: string
   public formattedAddress: string
