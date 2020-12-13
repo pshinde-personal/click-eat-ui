@@ -27,6 +27,9 @@ import { ReadComponent } from './read/read.component';
 import { MapComponent } from './components/map/map.component';
 import { AngularOpenlayersModule } from 'ngx-openlayers';
 import { GeoLocationService } from './services/geo-location.service';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { LoaderService } from './services/loader.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { GeoLocationService } from './services/geo-location.service';
     FogotPassComponent, 
     ResetPassComponent, 
     ReadComponent, 
-    MapComponent
+    MapComponent, 
+    LoaderComponent
   ],
   imports: [
     NgbModule,
@@ -65,7 +69,16 @@ import { GeoLocationService } from './services/geo-location.service';
     FlashMessagesModule.forRoot(),
     AngularOpenlayersModule
   ],
-  providers: [AuthService, JwtHelperService, AuthGuard, 
+  providers: [    
+    LoaderService, 
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: LoaderInterceptorService, 
+      multi: true 
+    },
+    AuthService, 
+    JwtHelperService, 
+    AuthGuard, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
