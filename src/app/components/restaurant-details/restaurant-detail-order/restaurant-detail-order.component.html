@@ -1,41 +1,41 @@
-  <table class="table table-hover">
-    <tr *ngFor="let item of food_items ">
-      <td>
-        <h4>{{item?.name}}</h4>
-        <h6>{{item?.details}}</h6>
-        <small>{{item?.price | currency:'INR'}}</small>
+<table class="table table-hover">
+  <tr *ngFor="let item of food_items ">
+    <td>
+      <h4>{{item?.name}}</h4>
+      <h6>{{item?.details}}</h6>
+      <small>{{item?.price | currency:'INR'}}</small>
+    </td>
+    <ng-template [ngIf]="item.quantity == 0" [ngIfElse]="order">
+      <td style="display: flex; align-items: baseline;">
+        <p class="mx-2 px-2">Add</p>
+        <button (click)="add(item)" class="px-2">+</button>
       </td>
-      <ng-template [ngIf]="item.quantity == 0" [ngIfElse]="order">
-        <td style="display: flex; align-items: baseline;">
-          <p class="mx-2 px-2">Add</p>
-          <button (click)="add(item)" class="px-2">+</button>
-        </td>
-      </ng-template>
-      <ng-template #order>
-        <td style="display: flex; align-items: baseline;">
-          <button (click)="remove(item)" class="px-2">-</button>
-          <p class="mx-2 px-2">{{item.quantity}}</p>
-          <button (click)="add(item)" class="px-2">+</button>
-        </td>
-      </ng-template>
-    </tr>
-  </table>
-  <div class="position-fixed container" style="bottom: .5em; width: 100%; padding-left: 0; padding-right: 30px;">
-    <ng-container *ngIf="expand; then expanded; else notExpanded">
-    </ng-container>
-  
-    <ng-template #expanded>
-      <div class="position-relative" style="height: max-content; background-color: whitesmoke;">
-        <button (click)="expand=!expand" class="position-absolute"
-          style="height: 2em; background-color: #1A1A1A; top: 0; width: 100%; color: white;">Close Order List</button>
-        <app-read></app-read>
-      </div>
     </ng-template>
-    
-    <ng-template #notExpanded>
-      <div class="position-relative" style="height: 2em; background-color: whitesmoke;">
-        <button (click)="expand=!expand" class="position-absolute"
-          style="height: 2em; background-color: #1A1A1A; bottom: 0; width: 100%; color: white;">View Order List</button>
-      </div>
+    <ng-template #order>
+      <td style="display: flex; align-items: baseline;">
+        <button (click)="remove(item)" class="px-2">-</button>
+        <p class="mx-2 px-2">{{item.quantity}}</p>
+        <button (click)="add(item)" class="px-2">+</button>
+      </td>
     </ng-template>
-  </div>
+  </tr>
+</table>
+<div class="position-fixed container" style="bottom: .5em; width: 100%; padding-left: 0; padding-right: 30px;">
+  <ng-container *ngIf="expand; then expanded; else notExpanded">
+  </ng-container>
+
+  <ng-template #expanded>
+    <div class="position-relative" style="background-color: whitesmoke;">
+      <button (click)="expand=!expand" class="position-absolute"
+        style="height: 2em; background-color: #1A1A1A; top: 0; width: 100%; color: white;">Close Order List</button>
+      <app-read></app-read>
+    </div>
+  </ng-template>
+
+  <ng-template #notExpanded>
+    <div class="position-relative" style="height: 2em; background-color: whitesmoke;">
+      <button (click)="expand=!expand" class="position-absolute"
+        style="height: 2em; background-color: #1A1A1A; bottom: 0; width: 100%; color: white;">View Order List</button>
+    </div>
+  </ng-template>
+</div>
