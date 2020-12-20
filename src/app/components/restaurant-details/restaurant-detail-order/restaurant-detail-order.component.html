@@ -20,14 +20,15 @@
     </ng-template>
   </tr>
 </table>
-<div class="position-fixed container" style="bottom: .5em; width: 100%; padding-left: 0; padding-right: 30px;">
+<div class="position-fixed container" style="bottom: 0; width: 100%; padding-left: 0; padding-right: 30px;">
   <ng-container *ngIf="expand; then expanded; else notExpanded">
   </ng-container>
 
   <ng-template #expanded>
     <div class="position-relative" style="background-color: whitesmoke;">
       <button (click)="expand=!expand" class="position-absolute"
-        style="height: 2em; background-color: #1A1A1A; top: 0; width: 100%; color: white;">Close Order List</button>
+        style="height: 2em; background-color: #1A1A1A; top: 0; width: 100%; color: white; text-transform: uppercase;">Close
+        Order List</button>
       <app-read></app-read>
     </div>
   </ng-template>
@@ -35,7 +36,8 @@
   <ng-template #notExpanded>
     <div class="position-relative" style="height: 2em; background-color: whitesmoke;">
       <button (click)="expand=!expand" class="position-absolute"
-        style="height: 2em; background-color: #1A1A1A; bottom: 0; width: 100%; color: white;">View Order List</button>
+        style="height: 2em; background-color: #1A1A1A; bottom: 0; width: 100%; color: white; text-transform: uppercase;">View
+        Order List</button>
     </div>
   </ng-template>
 </div>
